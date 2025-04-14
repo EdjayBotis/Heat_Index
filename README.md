@@ -1,6 +1,6 @@
 # Real-Time Heat Index Sensor (ESP32 Project)
 
-This project is a **real-time heat index monitoring system** built using an ESP32 microcontroller. It reads temperature and humidity data from a DHT22 sensor, calculates the heat index, and displays the results on an OLED screen. It also features an RTC module for timestamping, a buzzer and LED for alerts, and a button for manual resets or interaction.
+This project is a **real-time heat index monitoring system** built using an ESP32 microcontroller. It reads temperature and humidity data from a DHT22 sensor, calculates the heat index, and displays the results on an OLED screen. It also features an RTC module for timestamping, a buzzer and LED for alerts, and a swtich to on and off it.
 
 ## Components Used
 
@@ -15,7 +15,7 @@ This project is a **real-time heat index monitoring system** built using an ESP3
 
 ## Features
 
-- Real-time display with date & time
+- Real-time date & time
 - Measure temperature and humidity reading and Calculate Heat index
 - Buzzer + LED alert system for high heat index
 - Data displayed without needing a PC/laptop
@@ -40,6 +40,8 @@ This project is a **real-time heat index monitoring system** built using an ESP3
 - **Button** → One leg to GPIO25, other to GND
 
 
+
 Made with Edjay
+Feel free to copy, modify and improve it
 
 
