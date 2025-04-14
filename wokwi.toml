@@ -1,0 +1,24 @@
+[wokwi]
+version = 1
+firmware = ".pio/build/esp32dev/firmware.elf"
+elf = ".pio/build/esp32dev/firmware.elf"
+
+[[dependencies]]
+github = "adafruit/Adafruit-GFX-Library"
+
+[[dependencies]]
+github = "adafruit/Adafruit_SSD1306"
+
+[[dependencies]]
+github = "adafruit/DHT-sensor-library"
+
+[[dependencies]]
+github = "adafruit/Adafruit_BusIO"
+
+[[dependencies]]
+github = "adafruit/RTClib"
+
+
+
+
+
