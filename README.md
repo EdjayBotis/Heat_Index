@@ -31,10 +31,7 @@ This project is a **real-time heat index monitoring system** built using an ESP3
    - Buzzer sounds
 
 ##  Setup & Wiring
-
-> Components are soldered to provide a durable, display-ready setup.
-
-Example Wiring Summary:
+ Wiring Summary:
 - **DHT22** → VCC to 3.3V, DATA to GPIO4, GND to GND
 - **OLED** → SDA to GPIO21, SCL to GPIO22
 - **RTC** → SDA to GPIO21, SCL to GPIO22
