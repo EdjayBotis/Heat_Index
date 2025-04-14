@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "author": "Edjay Botis (ESP32 version)",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -89.4, "left": 98.8, "attrs": {} },
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp32",
+      "top": -92.9,
+      "left": -71.6,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "wokwi-ds1307", "id": "rtc1", "top": 225, "left": 499.3, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 214.34,
+      "left": 221.03,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": 134.7, "left": 4.2, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -199.2,
+      "left": 126.6,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 110, "left": 79.9, "attrs": {} }
+  ],
+  "connections": [
+    [ "oled1:SDA", "bb1:18b.j", "green", [ "v0" ] ],
+    [ "rtc1:SDA", "bb1:18b.h", "green", [ "h0", "v-211.5" ] ],
+    [ "rtc1:SCL", "bb1:17b.f", "cyan", [ "h-9.6", "v-240.2" ] ],
+    [ "oled1:SCL", "bb1:17b.j", "cyan", [ "v0" ] ],
+    [ "dht1:GND", "bb1:bn.6", "black", [ "v19.2", "h134.4" ] ],
+    [ "oled1:VCC", "bb1:bp.13", "red", [ "v0" ] ],
+    [ "dht1:VCC", "bb1:bp.5", "red", [ "v38.4", "h144" ] ],
+    [ "rtc1:5V", "bb1:bp.24", "red", [ "h0" ] ],
+    [ "bb1:18b.g", "esp32:21", "green", [ "v0", "h-288" ] ],
+    [ "bb1:17b.h", "esp32:22", "yellow", [ "v0", "h-259.2" ] ],
+    [ "bz1:2", "esp32:18", "orange", [ "v19.2", "h-163.6" ] ],
+    [ "dht1:SDA", "esp32:4", "magenta", [ "v28.8", "h-134.3", "v-326.4", "h144" ] ],
+    [ "esp32:3V3", "sw1:1", "red", [ "v67.9", "h141.8", "v19.2" ] ],
+    [ "sw1:2", "esp32:19", "green", [ "v9.6", "h-38.3", "v-48", "h-153.6", "v-182.4", "h105.6" ] ],
+    [ "sw1:3", "bb1:bn.2", "black", [ "v0", "h19.4" ] ],
+    [ "bb1:bn.4", "bb1:5b.j", "black", [ "v0" ] ],
+    [ "oled1:GND", "bb1:5b.i", "black", [ "v0" ] ],
+    [ "rtc1:GND", "bb1:5b.f", "black", [ "h-48", "v-230.4", "h-297.6" ] ],
+    [ "bz1:1", "bb1:5b.g", "black", [ "v0" ] ],
+    [ "bb1:bn.1", "esp32:GND.1", "black", [ "v-1.3", "h-190.4" ] ],
+    [ "esp32:D4", "dht1:SDA", "magenta", [ "v202.3", "h64.9" ] ],
+    [ "bb1:18b.g", "esp32:D21", "green", [ "v-19.2", "h-201.6", "v57.6", "h-67.2" ] ],
+    [ "bb1:17b.h", "esp32:D22", "cyan", [ "v0", "h-182.4", "v38.4", "h-38.4" ] ],
+    [ "bz1:2", "esp32:D18", "orange", [ "v19.2", "h-77.2" ] ],
+    [ "esp32:D15", "sw1:2", "green", [ "v58.3", "h132.4", "v38.4", "h19.2", "v-9.6" ] ]
+  ],
+  "dependencies": {}
+}
