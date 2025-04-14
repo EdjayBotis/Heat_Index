@@ -54,12 +54,8 @@ void setup() {
     oled.print("BSABE 3M2");
 
     oled.setTextSize(1);
-    oled.setCursor(15, 30);
-    oled.print("Altar,Botis");
-    oled.setCursor(15, 40);
-    oled.print("Buendia,Pineda");
-    oled.setCursor(15, 50);
-    oled.print("Reonico,Salamea");
+    oled.setCursor(10, 40);
+    oled.print("By Edjay Botis");
     oled.display();
     delay(3000);
 }
