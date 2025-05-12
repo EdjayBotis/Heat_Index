@@ -13,22 +13,6 @@ This project is a **real-time heat index monitoring system** built using an ESP3
 - **Tactile Switch** – for manual reset or user interaction
 - **Power Source** – USB or 5V battery pack
 
-## Features
-
-- Real-time date & time
-- Measure temperature and humidity reading and Calculate Heat index
-- Buzzer + LED alert system for high heat index
-- Data displayed without needing a PC/laptop
-
-## How It Works
-
-1. ESP32 reads data from the **DHT22 sensor**
-2. Calculates the **heat index** based on the temp and humidity
-3. Reads time from **RTC module**
-4. Displays all info on **OLED screen**
-5. If heat index crosses a threshold:
-   - LED lights up
-   - Buzzer sounds
 
 ##  Setup & Wiring
  Wiring Summary:
