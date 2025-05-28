@@ -15,7 +15,7 @@ This project is a **real-time heat index monitoring system** built using an ESP3
 
 
 ##  Wiring Diagram 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/df6f4c74-a707-45eb-8ada-111e06f888dc)
 
 
 
