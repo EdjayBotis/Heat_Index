@@ -19,7 +19,7 @@ This project is a **real-time heat index monitoring system** built using an ESP3
 
 
 
-Made with Edjay
+Made by Edjay,
 Feel free to copy, modify and improve it
 
 
