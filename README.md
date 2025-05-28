@@ -7,21 +7,15 @@ This project is a **real-time heat index monitoring system** built using an ESP3
 - **ESP32 Dev Board** – main microcontroller
 - **DHT22** – digital temperature & humidity sensor
 - **DS3231 RTC Module** – real-time clock
-- **OLED Display (128x64, I2C)** – visual output for temp, humidity, time, and heat index
+- **2.8inch TFT Display** – visual output for temp, humidity, time, and heat index
 - **Buzzer** – alert on high heat index
 - **LED** – visual alert for warning threshold
 - **Tactile Switch** – for manual reset or user interaction
-- **Power Source** – USB or 5V battery pack
+- **Power Source** – I use 3.7V Lipo Battery, and TP4056 for charging the battery and MT3608 to boost 3.7V to 5V
 
 
-##  Setup & Wiring
- Wiring Summary:
-- **DHT22** → VCC to 3.3V, DATA to GPIO4, GND to GND
-- **OLED** → SDA to GPIO21, SCL to GPIO22
-- **RTC** → SDA to GPIO21, SCL to GPIO22
-- **Buzzer** → Positive to GPIO27, Negative to GND
-- **LED** → Anode to GPIO26 (with resistor), Cathode to GND
-- **Button** → One leg to GPIO25, other to GND
+##  Wiring Diagram 
+![Uploading image.png…]()
 
 
 
