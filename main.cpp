@@ -10,7 +10,7 @@
 
 #define LED_RED 2
 #define LED_ORANGE 5
-#define LED_YELLOW 19
+#define LED_YELLOW 25
 
 #define TFT_CS    14
 #define TFT_RST   26
@@ -32,7 +32,17 @@ void setup() {
     rtc.begin();
     dht.begin();
     tft.begin();
-    
+    Wire.begin(21, 22);             
+    if (! rtc.begin()) {
+        Serial.println("Couldn't find RTC");
+        while (1) delay(10);
+    }
+
+    if (rtc.lostPower()) {
+        Serial.println("RTC lost power — setting time!");
+        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    }
+
     tft.fillScreen(ILI9341_BLACK);
     tft.setRotation(1);
     tft.setTextColor(ILI9341_GREEN);
@@ -71,24 +81,29 @@ void loop() {
         DateTime now = rtc.now();
         uint8_t day = now.dayOfTheWeek();
 
-        tft.setTextColor(ILI9341_WHITE,ILI9341_BLACK);
+        uint8_t rawHour = now.hour();           
+        bool isPM    = (rawHour >= 12);         
+        uint8_t hour12 = rawHour % 12;          
+        if (hour12 == 0) hour12 = 12;           
+
+        const char* ampm = isPM ? "PM" : "AM";
+        
+        tft.setTextColor(ILI9341_WHITE, ILI9341_BLACK);
         tft.setTextSize(2);
         tft.setCursor(0, 10);
-        tft.print(now.hour());
-        tft.print(":");
-        tft.print(now.minute());
-        tft.print(":");
-        tft.print(now.second());
 
-        tft.setCursor(130, 10);
+        tft.setTextSize(2);
+        tft.setTextColor(ILI9341_WHITE, ILI9341_BLACK);
+        tft.setCursor(0, 10);
+        tft.printf("%02u:%02u:%02u %s", 
+                    hour12, now.minute(), now.second(), ampm);
+
+        tft.setCursor(145, 10);
         tft.print(daysOfWeek[day]);
 
-        tft.setCursor(210, 10);
-        tft.print(now.year());
-        tft.print("/");
-        tft.print(now.month());
-        tft.print("/");
-        tft.print(now.day());
+        tft.setCursor(200, 10);
+        tft.printf("%04u/%02u/%02u", 
+                    now.year(), now.month(), now.day());
 
         tft.setTextColor(ILI9341_WHITE,ILI9341_BLACK);
         tft.setTextSize(6);
@@ -107,35 +122,41 @@ void loop() {
         tft.print(temp, 1);
         tft.print("C");
         
-    if (heatIndex >= 52) {
-        tone(BUZZER_PIN, 500);
-        delay(1000);
-        noTone(BUZZER_PIN);
-        delay(1000); 
-        digitalWrite(LED_RED, HIGH);
-        digitalWrite(LED_ORANGE, LOW);
-        digitalWrite(LED_YELLOW, LOW);
+        if (heatIndex >= 52) {
+            for (int i = 0; i < 5; i++) { 
+                tone(BUZZER_PIN, 1200);   
+                delay(300);               
+                tone(BUZZER_PIN, 800);    
+                delay(300);               
+                noTone(BUZZER_PIN);       
+                delay(100);               
+            }
+            digitalWrite(LED_RED, HIGH);
+            digitalWrite(LED_ORANGE, LOW);
+            digitalWrite(LED_YELLOW, LOW);
 
-    } else if (heatIndex >= 42) {
-        tone(BUZZER_PIN, 400);
-        delay(700);
-        noTone(BUZZER_PIN);
-        delay(700); 
-        digitalWrite(LED_RED, LOW);
-        digitalWrite(LED_ORANGE, HIGH);
-        digitalWrite(LED_YELLOW, LOW);
-    
-    } else if (heatIndex >= 33){
-        noTone(BUZZER_PIN);
-        digitalWrite(LED_RED, LOW);
-        digitalWrite(LED_ORANGE, LOW);
-        digitalWrite(LED_YELLOW, HIGH);
-        
-    } else {
-        noTone(BUZZER_PIN);
-        digitalWrite(LED_RED, LOW);
-        digitalWrite(LED_ORANGE, LOW);
-        digitalWrite(LED_YELLOW, LOW);
-  
-    }
+        } else if (heatIndex >= 42) {
+
+            for (int i = 0; i < 5; i++) { 
+                tone(BUZZER_PIN, 1000);   
+                delay(200);               
+                noTone(BUZZER_PIN);       
+                delay(200);               
+            }
+            digitalWrite(LED_RED, LOW);
+            digitalWrite(LED_ORANGE, HIGH);
+            digitalWrite(LED_YELLOW, LOW);
+
+        } else if (heatIndex >= 33) {
+            noTone(BUZZER_PIN);
+            digitalWrite(LED_RED, LOW);
+            digitalWrite(LED_ORANGE, LOW);
+            digitalWrite(LED_YELLOW, HIGH);
+
+        } else {
+            noTone(BUZZER_PIN);
+            digitalWrite(LED_RED, LOW);
+            digitalWrite(LED_ORANGE, LOW);
+            digitalWrite(LED_YELLOW, LOW);
+        }
 }
